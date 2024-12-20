@@ -22,8 +22,15 @@ class Node:
             return self.left.evaluate(x) % self.right.evaluate(x)
         elif self.value == "^":
             base = self.left.evaluate(x)
-            exponent = self.right.evaluate(x)
-            return 1 if base == 0 and exponent else base ** exponent
+            exponent = abs(self.right.evaluate(x))
+            if base == 0:
+                return 0
+            if exponent == 0:
+                return 1
+            if exponent % 1 == 0:
+                return base ** exponent
+            return 1
+            
         elif self.value == 'sin':
             return sin(self.left.evaluate(x))
         elif self.value == 'cos':
