@@ -8,7 +8,15 @@ def generate_random_tree(depth=3):
     generate a random tree of a given depth
     """
     if depth == 0:
-        return Node(random.choice(["x", "pi", "e", str(int(random.random() * 10))]))
+        rnd = random.random()
+        if rnd < 0.3:
+            return Node("x")
+        elif rnd < 0.4:
+            return Node("pi")
+        elif rnd < 0.5:
+            return Node("e")
+        else:
+            return Node(str(random.randint(0, 10)))
     # randomly choose an operator
     operator = random.choice(["+", "-", "*", "/", "^", "sin", "cos", "sqrt"])
     if operator in ["sin", "cos", "sqrt"]:
