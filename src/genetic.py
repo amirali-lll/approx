@@ -5,7 +5,7 @@ from src.fitness import fitness
 from src.utils import generate_random_tree
 from src.conf import DEFAULT_POPULATION_SIZE, DEFAULT_GENERATIONS
 
-def genetic_programming(x_values, y_values, population_size=10, generations=50):
+def genetic_programming(x_values, y_values, population_size=DEFAULT_POPULATION_SIZE, generations=DEFAULT_GENERATIONS):
     """Run the genetic programming algorithm."""
     # Step 1: Initialize population
     population = [generate_random_tree() for _ in range(population_size)]
