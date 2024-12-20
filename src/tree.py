@@ -37,4 +37,13 @@ class Node:
         else:
             return float(self.value)
 
+    def __str__(self):
+        if self.value in ['x', 'pi', 'e']:
+            return self.value
+        elif self.value in ['sin', 'cos', 'tan', 'sqrt']:
+            return f"{self.value}({self.left})"
+        elif self.value in ['+', '-', '*', '/', '%', '^']:
+            return f"({self.left} {self.value} {self.right})"
+        else:
+            return self.value
         
