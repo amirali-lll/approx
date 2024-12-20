@@ -64,3 +64,12 @@ class TestTree():
         assert tree.evaluate(0) == 5  # 5 = 5
         assert tree.evaluate(3) == 5  # 5 = 5
 
+    def test_sqrt(self):
+        tree = Node("sqrt", Node("+", Node("x"), Node("5")))
+        assert tree.evaluate(4) == 3.0  # sqrt(9) = 3.0
+        assert tree.evaluate(-6) == 0  # sqrt(-1) = 0
+
+    def test_exponentiation(self):
+        tree = Node("^", Node("x"), Node("-2"))
+        assert tree.evaluate(2) == 0.25  # 2^-2 = 0.25
+        assert tree.evaluate(0) == 1  # 0^-2 = 1 (safe fallback)
