@@ -27,14 +27,18 @@ class Node:
                 return 0
             if exponent == 0:
                 return 1
-            if exponent % 1 == 0:
+            # check that the exponent is not very large to avoid overflow
+            if exponent < 100 and exponent < 100 and exponent % 1 == 0:
                 return base ** exponent
             return 1
             
         elif self.value == 'sin':
-            return sin(self.left.evaluate(x))
+            left_val = self.left.evaluate(x)
+            # check that the left_value is ok for the function
+            return sin(left_val) if -10 <= left_val <= 10 else 0
         elif self.value == 'cos':
-            return cos(self.left.evaluate(x))
+            left_val = self.left.evaluate(x)
+            return cos(left_val) if -10 <= left_val <= 10 else 0
         elif self.value == 'tan':
             return tan(self.left.evaluate(x))
         elif self.value == 'pi':
