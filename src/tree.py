@@ -60,3 +60,10 @@ class Node:
             return f"({self.left} {self.value} {self.right})"
         else:
             return self.value
+    
+    def length(self):
+        if self.left is None and self.right is None:
+            return 1
+        if self.right is None:
+            return 1 + self.left.length()
+        return 1 + self.left.length() + self.right.length()
