@@ -28,8 +28,8 @@ class Node:
             if exponent == 0:
                 return 1
             # check that the exponent is not very large to avoid overflow
-            if exponent < 100 and exponent < 100 and exponent % 1 == 0:
-                return base ** exponent
+            if exponent > 10 or base > 100:
+                return 1
             return 1
             
         elif self.value == 'sin':
