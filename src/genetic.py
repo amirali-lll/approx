@@ -1,6 +1,7 @@
 import copy
 import random
-from src.operations import mutate,reproduce
+from src.operations import mutate, reproduce, prune
+
 from src.fitness import fitness
 from src.utils import generate_random_tree
 from src.conf import DEFAULT_POPULATION_SIZE, DEFAULT_GENERATIONS
@@ -31,6 +32,10 @@ def genetic_programming(x_values, y_values, population_size=DEFAULT_POPULATION_S
         # mutate the trees except the best one
         for i in range(1, population_size):
             next_generation[i] = mutate(next_generation[i])
+            
+        # prune the trees
+        for tree in next_generation:
+            tree = prune(tree, x_values, y_values)
         
         population = next_generation
             

@@ -2,7 +2,9 @@ import random
 from src.tree import Node
 from src.utils import generate_random_tree
 from src.conf import MUTATION_PROBABILITY
+from src.fitness import fitness
 import copy
+
 
 
 def mutate(tree, depth=3):
@@ -36,3 +38,19 @@ def reproduce(tree1, tree2):
         right = copy.deepcopy(tree2.right)
         left = copy.deepcopy(tree2.left)
     return Node(value, left=left, right=right)
+
+
+def prune(tree, x_values, y_values):
+    """
+    prune a tree by removing subtrees that do not improve the fitness
+    """
+    if tree.left and tree.right:
+        left_fitness = fitness(tree.left, x_values, y_values)
+        right_fitness = fitness(tree.right, x_values, y_values)
+        tree_fitness = fitness(tree, x_values, y_values)
+        if left_fitness > tree_fitness and right_fitness > tree_fitness:
+            return tree
+        if left_fitness > right_fitness:
+            return tree.left
+        return tree.right
+    return tree
