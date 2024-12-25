@@ -13,6 +13,7 @@ def genetic_programming(x_values, y_values, population_size=DEFAULT_POPULATION_S
     mse_values = []
 
     for generation in range(generations):
+        print(f"{generation}/{generations}", end="\r")
         sorted_population = sorted(population, key=lambda tree: fitness(tree, x_values, y_values))
 
 
