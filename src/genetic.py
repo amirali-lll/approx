@@ -27,8 +27,8 @@ def genetic_programming(x_values, y_values, population_size=DEFAULT_POPULATION_S
         
         # reproduce the others by peeking parents randomly
         while len(next_generation) < population_size:
-            parent1 = random.choice(sorted_population)
-            parent2 = random.choice(sorted_population)
+            parent1 = random.choice(next_generation)
+            parent2 = random.choice(next_generation)
             next_generation.append(reproduce(parent1, parent2))
         
         # mutate the trees except the best one

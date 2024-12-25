@@ -4,7 +4,8 @@ from src.utils import plot_mse_over_generations
 
 def main():
     x_values = np.linspace(-10, 10, 100)
-    y_values = x_values**4 + 5 * x_values + 8
+    # x^4 + 2x^3 + 3x^2 + 4x + 1
+    y_values = x_values ** 4 + 2 * x_values ** 3 + 3 * x_values ** 2 + 4 * x_values + 1
     best_tree, mse_values = genetic_programming(x_values, y_values)
     print(f"Best tree: {best_tree}")
     print(f"Best tree MSE: {mse_values[-1]}")
