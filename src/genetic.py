@@ -1,7 +1,7 @@
 import copy
 import random
+import numpy as np
 from src.operations import mutate, reproduce, prune
-
 from src.fitness import fitness
 from src.utils import generate_random_tree
 from src.conf import DEFAULT_POPULATION_SIZE, DEFAULT_GENERATIONS
@@ -9,7 +9,8 @@ from src.conf import DEFAULT_POPULATION_SIZE, DEFAULT_GENERATIONS
 
 def genetic_programming(x_values, y_values, population_size=DEFAULT_POPULATION_SIZE, generations=DEFAULT_GENERATIONS):
     """Run the genetic programming algorithm."""
-    population = [generate_random_tree() for _ in range(population_size)]
+    random_numbers = np.random.randint(2, 5, population_size)
+    population = [generate_random_tree(random_number) for random_number in random_numbers]
     mse_values = []
 
     for generation in range(generations):
