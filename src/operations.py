@@ -20,24 +20,41 @@ def mutate(tree, depth=3):
     return tree
 
 
-
 def reproduce(tree1, tree2):
     """
-    crossover two trees by swapping random subtrees
+    crossover two trees by swapping random subtrees at a random point
     """
     if tree1 is None:
         return copy.deepcopy(tree2)
     if tree2 is None:
         return copy.deepcopy(tree1)
-    if random.random() < 0.5:
-        value = tree1.value
-        right = copy.deepcopy(tree1.right)
-        left = copy.deepcopy(tree1.left)
-    else:
-        value = tree2.value
-        right = copy.deepcopy(tree2.right)
-        left = copy.deepcopy(tree2.left)
-    return Node(value, left=left, right=right)
+    
+    tree1 = copy.deepcopy(tree1)
+    tree2 = copy.deepcopy(tree2)
+
+    def get_random_subtree(tree):
+        if tree is None:
+            return None
+        nodes = [tree]
+        while nodes:
+            node = nodes.pop()
+            if random.random() < 0.5:
+                return node
+            if node.left:
+                nodes.append(node.left)
+            if node.right:
+                nodes.append(node.right)
+        return tree
+
+    subtree1 = get_random_subtree(tree1)
+    subtree2 = get_random_subtree(tree2)
+
+    if subtree1 and subtree2:
+        subtree1.value, subtree2.value = subtree2.value, subtree1.value
+        subtree1.left, subtree2.left = subtree2.left, subtree1.left
+        subtree1.right, subtree2.right = subtree2.right, subtree1.right
+
+    return tree1    
 
 
 def prune(tree, x_values, y_values):
