@@ -3,7 +3,7 @@ from src.genetic import genetic_programming
 from src.utils import plot_mse_over_generations
 
 def main():
-    x_values = np.linspace(-10, 10, 200)
+    x_values = np.linspace(-10, 10, 100)
     y_values = x_values**4 + 5 * x_values + 8
     best_tree, mse_values = genetic_programming(x_values, y_values)
     print(f"Best tree: {best_tree}")
