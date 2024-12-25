@@ -7,7 +7,7 @@ def generate_random_tree(depth=3):
     """
     generate a random tree of a given depth
     """
-    if depth == 0:
+    if depth <= 0:
         rnd = random.random()
         if rnd < 0.3:
             return Node("x")
